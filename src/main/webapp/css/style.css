@@ -1,0 +1,105 @@
+
+body 
+{
+font: 16px Helvetica;
+background: #4CD964;
+background-image: url("logo.png");
+background-repeat: no-repeat;
+background-position: 40px 90px;
+
+}
+
+section 
+{
+width: 600px;
+height: 300px;
+padding: 30px;
+margin: 0 auto;
+text-align: center;
+border-radius: 5px;
+background: White;
+}
+
+span 
+{
+display: block;
+position: relative;
+margin: 0 auto;
+height: 80px;
+width: 80px;
+center center no-repeat, White;
+}
+
+#localelist li
+{
+display: inline;
+list-style-type: none;
+padding-right: 20px;
+}
+
+#message div
+{
+color: #FF2D55;
+border-radius: 5px;
+width: 600px;
+height: 300px;
+padding: 30px;
+border-radius: 5px;
+background: White;
+}
+
+table
+{
+border-bottom: 1;
+}
+
+td, th
+{
+padding: 10px;
+}
+
+h1,h2,h3,h4,h5 
+{
+color: #3498db;
+background: #ffffff;
+border-radius: 5px;
+font-weight: bold;
+margin-bottom: 30px;
+text-align: center;
+width: 100%;
+
+}
+
+h1 
+{
+font-size: 24px; 
+}
+
+h2 
+{
+font-size: 16px;
+}
+
+.button{
+    margin:3px;
+	color: White;
+    background-color:#3498db;
+	border-radius: 5px;
+	border-bottom: 3px solid #2980b9;
+	padding: 5px;
+	min-width: 100px; 
+	font-size: 16px;
+}
+
+a 
+{
+text-decoration: none;
+min-width: 100px; 
+height: 30px;
+background: #3498db;
+color: White;
+border-radius: 5px;
+border-bottom: 3px solid #2980b9;
+padding: 5px;
+width: 100px;
+}

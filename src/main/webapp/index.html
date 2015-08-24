@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Phone APP</title>
+	<script type="text/javascript">
+		function fncInstall(){
+			document.getElementById("Cmd").value = '1';
+			document.getElementById("Frm").submit();
+		}
+		function fncRun(){
+			document.getElementById("Cmd").value = '2';
+			document.getElementById("Frm").submit();
+		}
+		function fncUninstall(){
+			document.getElementById("Cmd").value = '3';
+			document.getElementById("Frm").submit();
+		}
+		function fncAll(){
+			document.getElementById("Cmd").value = '4';
+			document.getElementById("Frm").submit();
+		}
+	</script>
+	<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+</head>
+<body>
+	<h1>Run APK</h1>
+	<section>
+	<ul>
+		<li><a href="index.html">Run APK</a>
+		<li><a href="upload.html">Upload APK</a>
+	</ul>
+	<form id="Frm" action="RunAPK" method="post">
+		<input type="hidden" name="Cmd" id="Cmd" value="">
+		<button id=btn Value="instalar" onclick = "fncInstall()">INSTALAR</button>
+		<button id=btn Value="ejecutar" onclick = "fncRun()">EJECUTAR</button>
+		<button id=btn Value="desinstalar" onclick = "fncUninstall()">DESINSTALAR</button>
+		<button id=btn Value="bucle" onclick = "fncAll()">BUCLE</button>		
+	</form>
+	</section>
+</body>
+</html>
