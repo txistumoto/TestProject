@@ -10,13 +10,13 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Volcando estructura de base de datos para phoneapp
--- DROP DATABASE IF EXISTS `phoneapp`;
--- CREATE DATABASE IF NOT EXISTS `phoneapp` 
-CREATE DATABASE IF NOT EXISTS `phoneapp` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `phoneapp`;
+-- Volcando estructura de base de datos para testproject
+-- DROP DATABASE IF EXISTS `testproject`;
+-- CREATE DATABASE IF NOT EXISTS `testproject` 
+CREATE DATABASE IF NOT EXISTS `testproject` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `testproject`;
 
--- Volcando estructura para tabla phoneapp.apks
+-- Volcando estructura para tabla testproject.apks
 -- DROP TABLE IF EXISTS `apks`;
 CREATE TABLE IF NOT EXISTS `apks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `apks` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Volcando estructura para disparador phoneapp.apks_BINS
+-- Volcando estructura para disparador testproject.apks_BINS
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `apks_BINS` BEFORE INSERT ON `apks` FOR EACH ROW BEGIN
@@ -38,7 +38,7 @@ DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 
--- Volcando estructura para disparador phoneapp.apks_BUPD
+-- Volcando estructura para disparador testproject.apks_BUPD
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `apks_BUPD` BEFORE UPDATE ON `apks` FOR EACH ROW BEGIN
@@ -50,7 +50,7 @@ SET SQL_MODE=@OLDTMP_SQL_MODE;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 
--- Volcando datos para la tabla phoneapp.apks: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla testproject.apks: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `apks` DISABLE KEYS */;
 INSERT INTO `apks` (`id`, `file`, `name`, `pack`, `creation_date`, `update_date`) VALUES
 	(1, 'PreReqAgile.apk', 'sqs.prereqagile', 'PreReqAgileActivity', current_timestamp, current_timestamp);

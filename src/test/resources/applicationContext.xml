@@ -36,7 +36,7 @@
 		<property name="loadTimeWeaver">
             <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/>
 		</property>                             
-		<property name="persistenceUnitName" value="PU"></property>
+		<property name="persistenceUnitName" value="PUTest"></property>
     </bean>
 	 
     <bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
@@ -47,5 +47,5 @@
 		p:entityManagerFactory-ref="entityManagerFactory"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
-	
+    
 </beans>

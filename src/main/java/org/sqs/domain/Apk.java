@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.sqs.TimestampUtil;
+
 import java.sql.Timestamp;
 
 /**
@@ -13,7 +15,8 @@ import java.sql.Timestamp;
 @Entity
 @Table(name="apks") 
 @NamedQueries({
-	@NamedQuery(name="Apk.findAll", query = "SELECT u FROM Apk u"),
+	@NamedQuery(name="Apk.findName", query = "SELECT a FROM Apk a WHERE a.name LIKE :name"),
+	@NamedQuery(name="Apk.findAll", query = "SELECT a FROM Apk a"),
 	@NamedQuery(name="Apk.delete", query = "DELETE FROM Apk a")
 }) 
 public class Apk implements Serializable {
@@ -36,6 +39,13 @@ public class Apk implements Serializable {
 	public Apk() {
 	}
 
+	public Apk(String file, String name, String pack) {
+		this.file = file;
+		this.name = name;
+		this.pack = pack;
+		this.creation_date = TimestampUtil.getCurrentTimestamp();
+		this.update_date = TimestampUtil.getCurrentTimestamp();
+	}
 	
 	public int getId() {
 		return id;
@@ -84,5 +94,48 @@ public class Apk implements Serializable {
 	public void setUpdate_date(Timestamp update_date) {
 		this.update_date = update_date;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Apk {" + 
+				"\"id\":" + id + 
+				", \"file\": " + (file==null?"null":"\"" + file + "\"") + 
+				", \"name\":\"" + (name==null?"null":"\"" +name + "\"") + 
+				", \"pack\":\"" + (pack==null?"null":"\"" +pack + "\"") + 
+		        ", \"creation_date\": " + (creation_date==null?"null":"\"" + creation_date.toString().replaceFirst(" ", "T") + "\"") +
+		        ", \"update_date\": " + (update_date==null?"null":"\"" + update_date.toString().replaceFirst(" ", "T") + "\"") + 
+				"}";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Apk other = (Apk) obj;
+		if (id == 0) {
+			if (other.id != 0)
+				return false;
+		} else if (id!=other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (file == null) {
+			if (other.file != null)
+				return false;
+		} else if (!file.equals(other.file))
+			return false;
+		if (pack == null) {
+			if (other.pack != null)
+				return false;
+		} else if (!pack.equals(other.pack))
+			return false;
+		return true;
+	}
 }

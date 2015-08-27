@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.sql.DataSource;
+import javax.transaction.TransactionRequiredException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,10 @@ public class ApkDaoImpl implements ApkDao {
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
-		this.jdbcTemplate = new JdbcTemplate(dataSource); 
+		//this.jdbcTemplate = new JdbcTemplate(dataSource); 
 	}
 	
-	JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	//JdbcTemplate jdbcTemplate = new JdbcTemplate();
 	
 	protected EntityManager em = null;
 	
@@ -59,7 +60,14 @@ public class ApkDaoImpl implements ApkDao {
 	}
 
 	public Apk findOne(String name) {
-		return em.find(Apk.class, name); 
+		List<Apk> results =  em.createNamedQuery("Apk.findName")
+			    .setParameter("name", name)
+			    .setMaxResults(1)
+			    .getResultList();
+		if (results.isEmpty())
+			return new Apk();
+		else
+			return results.get(0);
 	}
 
 	public List<Apk> findAll()  throws DataAccessException {
@@ -70,7 +78,9 @@ public class ApkDaoImpl implements ApkDao {
     
 	@Transactional(readOnly = false)
 	public Apk create(final Apk apk) {
-		//OLD: em.persist(apk);
+		//OLD:
+		em.persist(apk);
+		/*
 		KeyHolder holder = new GeneratedKeyHolder();
 		try {
 			jdbcTemplate.update(new PreparedStatementCreator() {           
@@ -88,13 +98,16 @@ public class ApkDaoImpl implements ApkDao {
 			apk.setId(id);
 		} catch (DataAccessException dae) {
 			logger.error(dae);	
-		}
+		}*/
 		return apk;
 	}
 
 	@Transactional(readOnly = false)
 	public Apk update(Apk apk) {
-		//OLD: em.merge(apk);
+		//OLD: 
+		em.merge(apk);
+		return apk;
+		/*
 		try {
 			jdbcTemplate.update(SQL_UPDATE,new Object[] {  apk.getFile(), apk.getName(), apk.getPack(), apk.getCreation_date(), apk.getUpdate_date(), apk.getId() });
 			return apk;
@@ -102,29 +115,28 @@ public class ApkDaoImpl implements ApkDao {
 			logger.error(dae);	
 			return null;
 		}
+		*/
 	}
 	
 	@Transactional(readOnly = false)
 	public Apk delete(int id) {
 		Apk apk = em.find(Apk.class, id);
-		/* OLD
-		em.getTransaction().begin();
+		/* OLD  */
+		//em.getTransaction().begin();
 		try {	
 			if (apk!=null) 
 				em.remove(apk);
 		} catch (DataAccessException eee) {
 			logger.error(eee);
-			em.getTransaction().setRollbackOnly();
+			//em.getTransaction().setRollbackOnly();
 		} catch (IllegalArgumentException iae) {
 			logger.error(iae);
-			em.getTransaction().setRollbackOnly();
-		} catch (TransactionRequiredException tre) {
-			logger.error(tre);
-			em.getTransaction().setRollbackOnly();
+			//em.getTransaction().setRollbackOnly();
 		} finally {
-	        em.getTransaction().commit();
+	        //em.getTransaction().commit();
 	    }
-	    */
+		return apk;
+		/*
 		try {
 			jdbcTemplate.update(SQL_DELETE,new Object[] { apk.getId() });
 			return apk;
@@ -132,6 +144,7 @@ public class ApkDaoImpl implements ApkDao {
 			logger.error(dae);	
 			return null;
 		}
+		*/
 	}
 
 }
