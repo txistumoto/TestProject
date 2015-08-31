@@ -10,6 +10,5 @@
 		<description>Persistence Unit</description>	
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>org.sqs.domain.Apk</class>
-        <class>org.sqs.domain.Web</class>
 	</persistence-unit>
 </persistence>

@@ -21,8 +21,10 @@ import org.sqs.domain.Apk;
 public class ApkDaoTest {	
 
 	protected final Logger logger = Logger.getLogger(getClass());
+	
 	@PersistenceContext
 	private EntityManager em;
+	
 	@Autowired
 	ApkDao apkDao;
 

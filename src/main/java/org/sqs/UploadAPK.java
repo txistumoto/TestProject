@@ -53,7 +53,7 @@ public class UploadAPK extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	      // Check that we have a file upload request
 	      isMultipart = ServletFileUpload.isMultipartContent(request);
 	      response.setContentType("text/html");

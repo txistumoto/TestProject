@@ -40,6 +40,12 @@ public class WebController {
 	@Value("${path.files}")
 	private String PATH_FILES = "C:\\Workspace\\PhoneApp\\files\\";	
 	
+    @Autowired
+    public WebController(ApkService apkService) {
+        this.apkService = apkService;
+    }
+ 
+    
 	/**
 	  * SERVICES
 	  */
